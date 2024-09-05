@@ -1,9 +1,14 @@
 import React from 'react'
-
-const FlightResults = () => {
+interface Props {
+  departure: any;
+  arrival: any;
+  departureDate: any;
+  arrivalDate: any;
+}
+const FlightResults:React.FC<Props> = ({arrival, departure,departureDate,arrivalDate}) => {
   return (
     <div className='w-2/3 bg-primary h-[50vh] text-primary-content'>
-        
+      {arrival} {departure} {departureDate} {arrivalDate}
     </div>
   )
 }
