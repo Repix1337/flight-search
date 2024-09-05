@@ -7,7 +7,7 @@ const FlightPanel:React.FC<Props> = ({title}) => {
   return (
     <div>
         <h1 className="text-6xl bg-primary text-white p-3 font-bold">{title}</h1>
-    <div className="carousel w-full bg-primary scrollbar scrollbar-thin scrollbar-thumb-gray-500 whitespace-nowrap">
+    <div className="carousel w-full bg-primary scrollbar scrollbar-thin scrollbar-thumb whitespace-nowrap">
       <FlightCard
         name="Warsaw"
         image="https://s.inyourpocket.com/img/text/poland/warsaw/warsaw-city-centre_drone-in-warsaw-2.jpg"

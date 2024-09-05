@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   content: [
@@ -17,9 +18,21 @@ const config: Config = {
   },
   plugins: [
     require('daisyui'),
+    plugin(function ({ addUtilities }) {
+      const newUtilities = {
+        '.scrollbar-thin': {
+          'scrollbar-width': 'thin',
+        },
+        '.scrollbar-none': {
+          'scrollbar-width': 'none',
+        },
+      };
+      addUtilities(newUtilities);
+    }),
   ],
   daisyui: {
     themes: ["winter"],
   },
 };
+
 export default config;
