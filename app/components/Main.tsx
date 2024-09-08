@@ -1,5 +1,5 @@
 'use client';
-import React, { use, useState } from 'react'
+import React, { useState } from 'react'
 import Search from './Search'
 import Link from 'next/link'
 
@@ -40,8 +40,8 @@ const Main = () => {
         <div className='flex gap-4'>
         <Search name='Departure' onChange={handleDepartureInput}/>
         <Search name='Arrival' onChange={handleArrivalInput}/>
-        <input type='date' className='text-primary-content' onChange={handleDepartureDateInput}/>
-        <input type='date' className='text-primary-content' onChange={handleArrivalDateInput}/>
+        <input type='date' className='text-accent-content' onChange={handleDepartureDateInput}/>
+        <input type='date' className='text-accent-content' onChange={handleArrivalDateInput}/>
         <Link href={{ pathname: '/SearchPage', query: props}}><input type='submit' value={"Submit"} className='btn btn-primary'/></Link>
         </div>
         </form>
