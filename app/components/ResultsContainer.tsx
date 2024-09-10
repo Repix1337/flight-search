@@ -11,6 +11,8 @@ const SearchPageResultsContainer = () => {
   const arrivalDate = searchParams.get('arrivalDate');
   const departureDate = searchParams.get('departureDate');
   const [flights, setFlights] = useState<FlightSearchData | undefined>(undefined);
+  const [maxPrice, setMaxPrice] = useState(2000);
+  const [maxDuration, setMaxDuration] = useState(24);
   const handleSearch = async () => {
    try {
        const response = await fetch(`/api/searchFlights?arrival=${arrival}&departure=${departure}&departureDate=${departureDate}&arrivalDate=${arrivalDate}`);
@@ -35,11 +37,19 @@ useEffect(() => {
     handleSearch();
   }
 }, [departure, arrival, departureDate, arrivalDate]); 
+const handlePriceChange = (e:any) =>
+{
+ setMaxPrice(e.target.value);
+}
+const handleDurationChange = (e:any) =>
+  {
+   setMaxDuration(e.target.value);
+  }
   return (
     <div className='w-screen flex'>
-      <Filters/>
+      <Filters onChange={handlePriceChange} durationChange={handleDurationChange}/>
       {flights ? 
-      <FlightResults flights={flights}/>
+      <FlightResults flights={flights} maxPrice={maxPrice} maxDuration={maxDuration}/>
       : 
       <div>No Flights available</div>}
     </div>
