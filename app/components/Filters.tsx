@@ -57,7 +57,7 @@ const Filters:React.FC<Props> = ({onChange, durationChange}) => {
           type="range"
           className=" range range-accent"
           min={3}
-          max={48}
+          max={24}
           step="3"
           onChange={durationChange}
         />

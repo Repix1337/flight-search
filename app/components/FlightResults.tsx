@@ -20,7 +20,7 @@ const FlightResults:React.FC<Props> = ({flights, maxPrice,maxDuration}) => {
       {flights?.other_flights ? (
         <div>
         <h1 className='text-accent-content text-center text-6xl font-bold'>Other Flights</h1>
-        <OtherFlights flights={flights} maxPrice={maxPrice} maxDuration={maxDuration}/>
+        <OtherFlights flights={flights} maxPrice={maxPrice} maxDuration={maxDuration} />
         </div>         
       ) : (
         <p>No flight data available</p>

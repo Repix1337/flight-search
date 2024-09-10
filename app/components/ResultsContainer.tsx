@@ -12,7 +12,7 @@ const SearchPageResultsContainer = () => {
   const departureDate = searchParams.get('departureDate');
   const [flights, setFlights] = useState<FlightSearchData | undefined>(undefined);
   const [maxPrice, setMaxPrice] = useState(2000);
-  const [maxDuration, setMaxDuration] = useState(24);
+  const [maxDuration, setMaxDuration] = useState(48);
   const handleSearch = async () => {
    try {
        const response = await fetch(`/api/searchFlights?arrival=${arrival}&departure=${departure}&departureDate=${departureDate}&arrivalDate=${arrivalDate}`);
