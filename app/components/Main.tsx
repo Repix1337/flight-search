@@ -1,19 +1,20 @@
 'use client';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Search from './Search'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation';
 
 type Props = {
   departure: string
   arrival: string
   departureDate: string
-  arrivalDate: string
+  arrivalDate: string 
 }
 const Main = () => {
-  const [departure, setDeparture] = useState("")
-  const [arrival, setArrival] = useState("")
-  const [departureDate, setDepartureDate] = useState("")
-  const [arrivalDate, setArrivalDate] = useState("")
+  const [departure, setDeparture] = useState("");
+  const [arrival, setArrival] = useState("");
+  const [departureDate, setDepartureDate] = useState("");
+  const [arrivalDate, setArrivalDate] = useState("");
   const props: Props = {departure,arrival,departureDate,arrivalDate}
   const handleDepartureInput = (e:any) => {
     setDeparture(e.target.value);
@@ -27,6 +28,15 @@ const Main = () => {
   const handleDepartureDateInput = (e:any) => {
     setDepartureDate(e.target.value);
   }
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    if (searchParams !== null) {
+      setDeparture(searchParams.get('departure') || '');
+      setArrival(searchParams.get('arrival') || '');
+      setDepartureDate(searchParams.get('departureDate') || '');
+      setArrivalDate(searchParams.get('arrivalDate') || '');
+    }
+  }, [searchParams]);
   return (
     <div
       className="hero h-[50vh] "
@@ -38,11 +48,11 @@ const Main = () => {
         <h1 className="text-8xl font-bold mb-3">Flight Search</h1>
         <form>
         <div className='flex gap-4'>
-        <Search name='Departure' onChange={handleDepartureInput}/>
-        <Search name='Arrival' onChange={handleArrivalInput}/>
-        <input type='date' className='text-accent-content' onChange={handleDepartureDateInput}/>
-        <input type='date' className='text-accent-content' onChange={handleArrivalDateInput}/>
-        <Link href={{ pathname: '/SearchPage', query: props}}><input type='submit' value={"Submit"} className='btn btn-primary'/></Link>
+        <Search name='Departure' onChange={handleDepartureInput} value={departure}/>
+        <Search name='Arrival' onChange={handleArrivalInput} value={arrival}/>
+        <input type='date' className='text-accent-content' onChange={handleDepartureDateInput} value={departureDate}/>
+        <input type='date' className='text-accent-content' onChange={handleArrivalDateInput} value={arrivalDate}/>
+        <Link href={{ pathname: '/SearchPage', query: props}}><input type='submit' value={"Submit"} className='btn btn-primary text-white'/></Link>
         </div>
         </form>
       </div>

@@ -2,12 +2,13 @@ import React from 'react'
 interface Props {
     name: string;
     onChange: any;
+    value:string
 }
-const Search:React.FC<Props> = ({name,onChange}) => {
+const Search:React.FC<Props> = ({name,onChange,value}) => {
   return (
     <div className='flex'>
     <label className="input input-bordered input-primary text-accent-content flex items-center gap-2">
-  <input type="text" className="grow" placeholder={name} onChange={onChange}/>
+  <input type="text" className="grow" placeholder={name} onChange={onChange} value={value}/>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 16 16"
