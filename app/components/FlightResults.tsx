@@ -1,32 +1,40 @@
-import OtherFlights from './SearchResultOtherFlights';
-import BestFlights from './SearchResultsBestFlights';
+import FlightResultsItems from "./FlightResultsItems"; 
+
 interface Props {
-  flights:FlightSearchData|undefined
-  maxPrice: number
-  maxDuration: number
+  flights: FlightSearchData | undefined;
+  maxPrice: number;
+  maxDuration: number;
+  layovers: boolean;
+  currencyExchangeRate: ExchangeRateAPIResponse | undefined;
+  currency: string;
 }
-const FlightResults:React.FC<Props> = ({flights, maxPrice,maxDuration}) => {
-   
+
+const FlightResults: React.FC<Props> = ({
+  flights,
+  maxPrice,
+  maxDuration,
+  layovers,
+  currencyExchangeRate,
+  currency,
+}) => {
   return (
-    <div className='w-3/4 p-2 '>
-      {flights?.best_flights ? (
-        <div >
-          <h1 className='text-accent-content text-center text-6xl font-bold'>Best Flights</h1>
-        <BestFlights flights={flights} maxPrice={maxPrice} maxDuration={maxDuration}/>
-        </div>         
-      ) : (
-        <p>No best flights available</p>
-      )}
-      {flights?.other_flights ? (
+    <div className="w-3/4 p-2">
+      {flights ? (
         <div>
-        <h1 className='text-accent-content text-center text-6xl font-bold'>Other Flights</h1>
-        <OtherFlights flights={flights} maxPrice={maxPrice} maxDuration={maxDuration} />
-        </div>         
+          <FlightResultsItems
+            flights={flights}
+            maxPrice={maxPrice}
+            maxDuration={maxDuration}
+            layovers={layovers}
+            currencyExchangeRate={currencyExchangeRate}
+            currency={currency}
+          />
+        </div>
       ) : (
         <p>No flight data available</p>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default FlightResults
+export default FlightResults;

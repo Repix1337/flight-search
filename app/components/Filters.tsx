@@ -2,11 +2,14 @@ import React from "react";
 interface Props {
   onChange: any
   durationChange: any
+  layoverChange:any
+  currencyChange:any
 }
-const Filters:React.FC<Props> = ({onChange, durationChange}) => {
+const Filters:React.FC<Props> = ({onChange, durationChange, layoverChange,currencyChange}) => {
   return (
     <div className="w-1/4 bg-primary  text-primary-content">
-      <h1 className="text-5xl font-bold">Price:</h1>
+      <h1 className="text-6xl font-bold text-center">Filters</h1>
+      <h1 className="text-4xl font-bold">Price:</h1>
       <div>
       <div className="flex w-full justify-between px-2 text-xs">
             <span>200</span>
@@ -40,7 +43,7 @@ const Filters:React.FC<Props> = ({onChange, durationChange}) => {
             {" "}
           </div>
         </div>
-        <h1 className="text-5xl font-bold">Duration:</h1>
+        <h1 className="text-3xl font-bold">Duration:</h1>
       <div>
       <div className="flex w-full justify-between px-2 text-xs">
             <span>3h</span>
@@ -74,6 +77,18 @@ const Filters:React.FC<Props> = ({onChange, durationChange}) => {
             {" "}
           </div>
         </div>
+        <p className="text-3xl font-bold flex items-center gap-2">Layover <input type="checkbox" defaultChecked className="checkbox checkbox-secondary" onChange={layoverChange}/></p>
+        <p className="text-3xl font-bold flex items-center gap-2">
+        <div className="dropdown dropdown-hover">
+  <div tabIndex={0} role="button" className="btn m-1">Currency</div>
+  <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+    <li><button onClick={currencyChange} value={"USD"}><a>USD</a></button></li>
+    <li><button onClick={currencyChange} value={"PLN"}><a>PLN</a></button></li>
+    <li><button onClick={currencyChange} value={"GBP"}><a>GBP</a></button></li>
+    <li><button onClick={currencyChange} value={"EUR"}><a>EUR</a></button></li>
+  </ul>
+</div>
+          </p>      
       </div>
   );
 };
