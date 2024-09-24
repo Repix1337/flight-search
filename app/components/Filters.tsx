@@ -30,7 +30,7 @@ const Filters: React.FC<Props> = ({
   const durationSteps = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36];
 
   return (
-    <div className="w-1/4 bg-primary text-primary-content p-4">
+    <div className="w-1/4 flex flex-col text-primary-content p-4 gap-2">
       <h1 className="text-6xl font-bold text-center">Filters</h1>
 
       {/* Price Range */}
@@ -46,7 +46,7 @@ const Filters: React.FC<Props> = ({
         </span>
         <input
           type="range"
-          className="range range-accent"
+          className="range range-primary"
           min={100}
           max={2000}
           value={selectedPrice}
@@ -63,14 +63,10 @@ const Filters: React.FC<Props> = ({
       {/* Duration Range */}
       <h1 className="text-3xl font-bold">Duration:</h1>
       <div>
-        <div className="flex w-full justify-between px-2 text-xs gap-2">
-          {durationSteps.map((step) => (
-            <span key={step}>{step}h</span>
-          ))}
-        </div>
+        <span>{selectedDuration} h</span>
         <input
           type="range"
-          className="range range-accent"
+          className="range range-primary"
           min={3}
           max={36}
           value={selectedDuration}
@@ -90,14 +86,14 @@ const Filters: React.FC<Props> = ({
         <input
           type="checkbox"
           defaultChecked
-          className="checkbox checkbox-secondary"
+          className="checkbox checkbox-primary"
           onChange={layoverChange}
         />
       </p>
 
-      {/* Currency Dropdown */}
-      <div className="dropdown">
-  
+      
+      <div className="dropdown flex flex-col gap-2">
+  {/* Currency Dropdown */}
   <div>
     <select
       id="currency-options"
@@ -112,7 +108,7 @@ const Filters: React.FC<Props> = ({
   </div>
 
   {/* Sort Dropdown */}
-  <div>
+  <div >
     <select
       id="options"
       className="select select-primary w-full max-w-xs"

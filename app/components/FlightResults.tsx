@@ -53,7 +53,7 @@ const FlightResults: React.FC<Props> = ({
       .map((flight, index) => (
         <div
           key={index}
-          className="flight w-4/5 justify-center flex flex-col bg-primary items-center border-black border rounded-xl m-2 bg-opacity-65"
+          className="flight w-4/5 justify-center flex flex-col  items-center border-black border rounded-xl m-2 bg-opacity-65"
         >
           {flight.flights.map((segment, segIndex) => (
             <div

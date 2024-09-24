@@ -14,7 +14,7 @@ const SearchPageResultsContainer = () => {
     undefined
   );
   const [maxPrice, setMaxPrice] = useState(2600);
-  const [maxDuration, setMaxDuration] = useState(48);
+  const [maxDuration, setMaxDuration] = useState(36);
   const [layovers, setLayovers] = useState(true);
   const [sort, setSort] = useState("none");
   const [currency, setCurrency] = useState("USD");
