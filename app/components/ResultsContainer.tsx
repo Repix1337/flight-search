@@ -95,6 +95,7 @@ const SearchPageResultsContainer = () => {
         currencyChange={handleCurrencyChange}
         sortChange={handleSorting}
         selectedPrice={maxPrice}
+        selectedDuration={maxDuration}
         currencyExchangeRate={currencyExchangeRate}
         currency={currency}
       />
@@ -106,7 +107,7 @@ const SearchPageResultsContainer = () => {
           layovers={layovers}
           currencyExchangeRate={currencyExchangeRate}
           currency={currency}
-          sort={sort}
+          sorting={sort}
         />
       ) : (
         <div>No Flights available</div>
