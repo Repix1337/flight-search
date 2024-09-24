@@ -2,7 +2,7 @@ import React from 'react'
 
 const ContactPanel = () => {
   return (
-    <div className='hero bg-primary text-primary-content'>
+    <div className='hero  text-primary-content'>
         <div className='hero-content flex-col lg:flex-row'>
         <img
       src="https://www.buid.ac.ae/wp-content/uploads/2022/02/contactus.webp"

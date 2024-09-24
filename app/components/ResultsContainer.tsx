@@ -87,7 +87,7 @@ const SearchPageResultsContainer = () => {
     setCurrency(e.target.value);
   };
   return (
-    <div className="w-screen flex">
+    <div className="flex px-20">
       <Filters
         onChange={handlePriceChange}
         durationChange={handleDurationChange}

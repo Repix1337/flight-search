@@ -6,7 +6,7 @@ import ResultsContainer from '../components/ResultsContainer'
 
 const SearchPage = () => {
   return (
-    <div>
+    <div className=''>
         <Navbar/>
         <Main/>
         <ResultsContainer/>

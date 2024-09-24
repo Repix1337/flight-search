@@ -2,7 +2,7 @@ import React from 'react'
 
 const TextPanel = () => {
   return (
-    <div className='hero bg-secondary text-primary-content'>
+    <div className='hero  text-primary-content'>
         <div className='hero-content flex-col lg:flex-row-reverse'>
         <img
       src="https://www.libertytravel.com/sites/default/files/styles/full_size/public/flight-hero.jpg?itok=LKyRwKDq"

@@ -7,7 +7,7 @@ import TextPanel from "./components/TextPanel";
 
 export default function Home() {
   return (
-    <div className="h-screen w-screen ">
+    <div className="h-screen w-screen  ">
       <Navbar/>
       <Main/>
       <FlightPanel title="Cheapest Flights"/>

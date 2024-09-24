@@ -7,7 +7,7 @@ interface Props {
 
 const FlightCard:React.FC<Props> = ({name,image}) => {
   return (
-    <div className="carousel-item card text-primary-content w-96 bg-accent m-10">
+    <div className="carousel-item card text-primary-content w-96 bg-primary m-10">
       <figure>
         <img
           src={image}
@@ -19,7 +19,7 @@ const FlightCard:React.FC<Props> = ({name,image}) => {
         <h1 className="card-title">{name}</h1>
         <p>Idealne miejsce na wakacje</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Book it</button>
+          <button className="btn btn-accent">Book it</button>
         </div>
       </div>
     </div>
