@@ -13,9 +13,10 @@ const SearchPageResultsContainer = () => {
   const [flights, setFlights] = useState<FlightSearchData | undefined>(
     undefined
   );
-  const [maxPrice, setMaxPrice] = useState(2000);
+  const [maxPrice, setMaxPrice] = useState(2600);
   const [maxDuration, setMaxDuration] = useState(48);
   const [layovers, setLayovers] = useState(true);
+  const [sort, setSort] = useState("none");
   const [currency, setCurrency] = useState("USD");
   const [currencyExchangeRate, setCurrencyExchangeRate] = useState<
     ExchangeRateAPIResponse | undefined
@@ -52,9 +53,12 @@ const SearchPageResultsContainer = () => {
   const handleDurationChange = (e: any) => {
     setMaxDuration(e.target.value);
   };
-  const handleLayovers = (e: any) => {
+  const handleLayovers = () => {
     layovers ? setLayovers(false) : setLayovers(true);
   };
+  const handleSorting = (e: any) => {
+    setSort(e.target.value)
+  }
   const exchangeRateConnection = async () => {
     try {
         const response = await fetch(`/api/exchangeRate?currency=${currency}`);
@@ -89,6 +93,10 @@ const SearchPageResultsContainer = () => {
         durationChange={handleDurationChange}
         layoverChange={handleLayovers}
         currencyChange={handleCurrencyChange}
+        sortChange={handleSorting}
+        selectedPrice={maxPrice}
+        currencyExchangeRate={currencyExchangeRate}
+        currency={currency}
       />
       {flights ? (
         <FlightResults
@@ -98,6 +106,7 @@ const SearchPageResultsContainer = () => {
           layovers={layovers}
           currencyExchangeRate={currencyExchangeRate}
           currency={currency}
+          sort={sort}
         />
       ) : (
         <div>No Flights available</div>

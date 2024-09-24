@@ -1,95 +1,102 @@
 import React from "react";
+
 interface Props {
-  onChange: any
-  durationChange: any
-  layoverChange:any
-  currencyChange:any
+  onChange: any;
+  durationChange: any;
+  layoverChange: any;
+  currencyChange: any;
+  sortChange: any;
+  selectedPrice: number;
+  currencyExchangeRate: ExchangeRateAPIResponse | undefined;
+  currency: string;
 }
-const Filters:React.FC<Props> = ({onChange, durationChange, layoverChange,currencyChange}) => {
+
+const Filters: React.FC<Props> = ({selectedPrice,currency, onChange, durationChange,
+   layoverChange, currencyChange, sortChange,
+   currencyExchangeRate }) => {
+  const priceSteps = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300,
+     1400, 1500, 1600, 1700, 1800, 1900, 2000];
+  const durationSteps = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36];
+
   return (
-    <div className="w-1/4 bg-primary  text-primary-content">
+    <div className="w-1/4 bg-primary text-primary-content p-4">
       <h1 className="text-6xl font-bold text-center">Filters</h1>
-      <h1 className="text-4xl font-bold">Price:</h1>
+
+      {/* Price Range */}
+      <h1 className="text-4xl font-bold">Max Price:</h1>
       <div>
-      <div className="flex w-full justify-between px-2 text-xs">
-            <span>200</span>
-            <span>400</span>
-            <span>600</span>
-            <span>800</span>
-            <span>1000</span>
-            <span>1200</span>
-            <span>1400</span>
-            <span>1600</span>
-            {" "}
-          </div>
+        <span>{currencyExchangeRate?.conversion_rates
+                  ? Math.floor(
+                    selectedPrice  *
+                        currencyExchangeRate?.conversion_rates[currency]
+                    )
+                  : selectedPrice} {currency}</span>
         <input
           type="range"
-          className=" range range-accent"
-          min={200}
-          max={1600}
-          step="200"
+          className="range range-accent"
+          min={100}
+          max={2000}
+          step="100"
           onChange={onChange}
         />
-          <div className="flex w-full justify-between px-2 text-xs">
-            <span>|</span>
-            <span>|</span>
-            <span>|</span>
-            <span>|</span>
-            <span>|</span>
-            <span>|</span>
-            <span>|</span>
-            <span>|</span>
-            
-            {" "}
-          </div>
+        <div className="flex w-full justify-between px-2 text-xs">
+          {priceSteps.map(() => (
+            <span key={Math.random()}>|</span>
+          ))}
         </div>
-        <h1 className="text-3xl font-bold">Duration:</h1>
+      </div>
+
+      {/* Duration Range */}
+      <h1 className="text-3xl font-bold">Duration:</h1>
       <div>
-      <div className="flex w-full justify-between px-2 text-xs">
-            <span>3h</span>
-            <span>6h</span>
-            <span>9h</span>
-            <span>12h</span>
-            <span>15h</span>
-            <span>18h</span>
-            <span>21h</span>
-            <span>24h</span>
-            {" "}
-          </div>
+        <div className="flex w-full justify-between px-2 text-xs gap-2">
+          {durationSteps.map(step => (
+            <span key={step}>{step}h</span>
+          ))}
+        </div>
         <input
           type="range"
-          className=" range range-accent"
+          className="range range-accent"
           min={3}
-          max={24}
+          max={36}
           step="3"
           onChange={durationChange}
         />
-          <div className="flex w-full justify-between px-2 text-xs">
-            <span>|</span>
-            <span>|</span>
-            <span>|</span>
-            <span>|</span>
-            <span>|</span>
-            <span>|</span>
-            <span>|</span>
-            <span>|</span>
-            
-            {" "}
-          </div>
+        <div className="flex w-full justify-between px-2 text-xs">
+          {durationSteps.map(() => (
+            <span key={Math.random()}>|</span>
+          ))}
         </div>
-        <p className="text-3xl font-bold flex items-center gap-2">Layover <input type="checkbox" defaultChecked className="checkbox checkbox-secondary" onChange={layoverChange}/></p>
-        <p className="text-3xl font-bold flex items-center gap-2">
-        <div className="dropdown dropdown-hover">
-  <div tabIndex={0} role="button" className="btn m-1">Currency</div>
-  <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-    <li><button onClick={currencyChange} value={"USD"}><a>USD</a></button></li>
-    <li><button onClick={currencyChange} value={"PLN"}><a>PLN</a></button></li>
-    <li><button onClick={currencyChange} value={"GBP"}><a>GBP</a></button></li>
-    <li><button onClick={currencyChange} value={"EUR"}><a>EUR</a></button></li>
-  </ul>
-</div>
-          </p>      
       </div>
+
+      {/* Layover Checkbox */}
+      <p className="text-3xl font-bold flex items-center gap-2">
+        Layover
+        <input type="checkbox" defaultChecked className="checkbox checkbox-secondary" onChange={layoverChange} />
+      </p>
+
+      {/* Currency Dropdown */}
+      <div className="dropdown dropdown-hover">
+        <div tabIndex={0} role="button" className="btn btn-accent m-1">Currency</div>
+        <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+          <li><button onClick={currencyChange} value={"USD"}><a>USD</a></button></li>
+          <li><button onClick={currencyChange} value={"PLN"}><a>PLN</a></button></li>
+          <li><button onClick={currencyChange} value={"GBP"}><a>GBP</a></button></li>
+          <li><button onClick={currencyChange} value={"EUR"}><a>EUR</a></button></li>
+        </ul>
+      </div>
+
+      {/* Sort Dropdown */}
+      <div>
+        <select id="options" className="select select-primary w-full max-w-xs" onChange={sortChange}>
+          <option disabled selected value="none">Sort by</option>
+          <option value="cheapest">Cheapest flights</option>
+          <option value="shortest">Shortest flights</option>
+          <option value="direct">Direct flight</option>
+          <option value="none">None</option>
+        </select>
+      </div>
+    </div>
   );
 };
 
