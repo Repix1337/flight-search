@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 interface Props {
@@ -107,9 +108,12 @@ const FlightResults: React.FC<Props> = ({
                   ))
                 : null}
             </div>
+           
+            <Link href={{ pathname: '/FlightPage', query: JSON.stringify(flight)}}>
             <button className="btn btn-primary text-white font-extrabold  m-1 rounded-xl ">
               Book it
             </button>
+            </Link>
           </div>
         </div>
       ));
